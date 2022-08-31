@@ -1,7 +1,23 @@
 import "./Employees-list-item.css";
+import { useState } from "react";
 
 const EmployeesListItem = ({ item }) => {
   let className = "list-group-item d-flex justife-content-between";
+  const [prize, setPrize] = useState(false);
+
+  function addSetPrize() {
+    if (prize) {
+      className = "list-group-item d-flex justife-content-between";
+      setPrize(false);
+    } else {
+      className += " like";
+      setPrize(true);
+    }
+  }
+
+  if (prize) {
+    className += " like";
+  }
   if (item.increase) {
     className += " increase";
   }
@@ -17,6 +33,7 @@ const EmployeesListItem = ({ item }) => {
         <button
           type="button"
           className="btn-cookie btn-sm"
+          onClick={() => addSetPrize()}
         >
           <i className="fas fa-cookie"></i>
         </button>
