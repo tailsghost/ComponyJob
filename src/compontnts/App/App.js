@@ -4,6 +4,7 @@ import SearchPanel from "../Search-panel/Search-panel";
 import AppFilter from "../App-filter/App-filter";
 import EmployeesList from "../Employees-list/Employees-list";
 import EmployeesAddForm from "../Employees-add-form/Employees-add-form";
+import React from "react";
 function App() {
   const data = [
     {
@@ -41,7 +42,6 @@ function App() {
   return (
     <div className="App">
       <AppInfo />
-
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
