@@ -1,9 +1,9 @@
 import "./Employees-add-form.css";
-import { useState, StrictMode } from "react";
+import { useState } from "react";
 
 const EmployeesAddForm = () => {
   const [name, setName] = useState("");
-  const [salary, setSalary] = useState(0);
+  const [salary, setSalary] = useState("");
 
   function addSet(e, props) {
     console.log(e);
@@ -19,19 +19,20 @@ const EmployeesAddForm = () => {
           className="form-control new-post-label"
           placeholder="Как его зовут?"
           onChange={(e) => addSet(e.target.value, setName)}
-          defaultValue={name}
+          value={name}
         />
         <input
           type="number"
           className="form-control new-post-label"
-          placeholder="З/П в &?"
+          placeholder="З/П в $?"
           onChange={(e) => addSet(e.target.value, setSalary)}
-          defaultValue={salary}
+          value={salary}
         />
 
         <button
           type="sumbit"
           className="btn btn-outline-light"
+          onClick={(e) => e.preventDefault()}
         >
           Добавить
         </button>

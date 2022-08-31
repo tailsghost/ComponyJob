@@ -4,8 +4,17 @@ import SearchPanel from "../Search-panel/Search-panel";
 import AppFilter from "../App-filter/App-filter";
 import EmployeesList from "../Employees-list/Employees-list";
 import EmployeesAddForm from "../Employees-add-form/Employees-add-form";
-import React from "react";
+import { useState } from "react";
+
 function App() {
+  const [deleted, setDeleted] = useState(50);
+
+  function addSetDeleted(id) {
+    setDeleted(id);
+    const index = data.findIndex((elem) => elem.id === deleted);
+    console.log(id);
+  }
+
   const data = [
     {
       name: "John C.",
@@ -46,7 +55,10 @@ function App() {
         <SearchPanel />
         <AppFilter />
       </div>
-      <EmployeesList data={data} />
+      <EmployeesList
+        data={data}
+        onDelete={addSetDeleted}
+      />
       <EmployeesAddForm />
     </div>
   );
