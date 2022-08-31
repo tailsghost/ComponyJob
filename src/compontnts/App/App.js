@@ -39,7 +39,7 @@ function App() {
   ];
 
   return (
-    <div className="App">
+    <div className="App AppInfo">
       <AppInfo />
 
       <div className="search-panel">
