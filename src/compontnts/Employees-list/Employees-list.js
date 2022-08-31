@@ -8,7 +8,7 @@ const EmployeesList = ({ data }) => {
         return (
           <EmployeesListItem
             item={item}
-            key={item.name}
+            key={item.id}
           />
         );
       })}
