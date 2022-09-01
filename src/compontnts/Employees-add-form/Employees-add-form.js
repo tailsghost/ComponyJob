@@ -1,7 +1,7 @@
 import "./Employees-add-form.css";
 import { useState } from "react";
 
-const EmployeesAddForm = () => {
+const EmployeesAddForm = ({ onAddEmployees }) => {
   const [name, setName] = useState("");
   const [salary, setSalary] = useState("");
 
@@ -32,7 +32,10 @@ const EmployeesAddForm = () => {
         <button
           type="sumbit"
           className="btn btn-outline-light"
-          onClick={(e) => e.preventDefault()}
+          onClick={(e) => {
+            e.preventDefault();
+            onAddEmployees({ name, salary });
+          }}
         >
           Добавить
         </button>

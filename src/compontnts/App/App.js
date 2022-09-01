@@ -7,48 +7,64 @@ import EmployeesAddForm from "../Employees-add-form/Employees-add-form";
 import { useState } from "react";
 
 function App() {
-  const [deleted, setDeleted] = useState({
+  const [employees, setEmployees] = useState({
     data: [
       {
         name: "John C.",
         salary: 500,
         increase: true,
-        id: 1,
+        id: idEmployees(),
       },
       {
         name: "Alex M.",
         salary: 800,
         increase: false,
-        id: 2,
+        id: idEmployees(),
       },
       {
         name: "Carl W.",
         salary: 1100,
         increase: false,
-        id: 3,
+        id: idEmployees(),
       },
       {
         name: "Sara I.",
         salary: 600,
         increase: false,
-        id: 4,
+        id: idEmployees(),
       },
       {
         name: "West F.",
         salary: 5000,
         increase: false,
-        id: 5,
+        id: idEmployees(),
       },
     ],
   });
 
-  console.log(deleted);
+  function idEmployees() {
+    return Math.ceil(Math.random() * 10000000);
+  }
 
-  function addSetDeleted(id) {
-    deleted.data.findIndex((elem) => elem.id === id);
+  function removeSetEmployees(id) {
     let data = [];
-    deleted.data.map((item) => data.push(item));
-    setDeleted({ data: data.filter((item) => item.id !== id) });
+    employees.data.map((item) => data.push(item));
+    setEmployees({ data: data.filter((item) => item.id !== id) });
+  }
+
+  function addSetEmployees({ name, salary }) {
+    let data = [];
+
+    let employeesData = {
+      name: name,
+      salary: salary,
+      increase: false,
+      id: idEmployees(),
+    };
+    employees.data.map((item) => data.push(item));
+    data.push(employeesData);
+    console.log(data);
+    setEmployees({ data: data });
   }
 
   return (
@@ -59,10 +75,10 @@ function App() {
         <AppFilter />
       </div>
       <EmployeesList
-        data={deleted}
-        onDelete={addSetDeleted}
+        data={employees}
+        onDelete={removeSetEmployees}
       />
-      <EmployeesAddForm />
+      <EmployeesAddForm onAddEmployees={addSetEmployees} />
     </div>
   );
 }
