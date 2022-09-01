@@ -1,36 +1,43 @@
 import "./Employees-list-item.css";
-import { useState } from "react";
 
-const EmployeesListItem = ({ name, salary, onDelete, increase }) => {
+const EmployeesListItem = ({
+  name,
+  salary,
+  onDelete,
+  increase,
+  rise,
+  onToggleIncrease,
+  onToggleRise,
+}) => {
   let className = "list-group-item d-flex justife-content-between";
-  const [prize, setPrize] = useState(increase);
-  const [increases, setIncreases] = useState(increase);
 
-  function addSetPrize() {
-    if (prize) {
-      className = "list-group-item d-flex justife-content-between";
-      setPrize(false);
-      setIncreases(false);
-    } else {
-      className += " like increase";
-      setPrize(true);
-      setIncreases(true);
-    }
-  }
+  // function addSetPrize() {
+  //   if (prize) {
+  //     className = "list-group-item d-flex justife-content-between";
+  //     setPrize(false);
+  //     setIncreases(false);
+  //   } else {
+  //     className += " like increase";
+  //     setPrize(true);
+  //     setIncreases(true);
+  //   }
+  // }
 
-  if (prize) {
+  if (increase) {
     className += " like";
   }
 
-  if (increases) {
+  if (rise) {
     className += " increase";
   }
   return (
-    <li
-      className={className}
-      value={increases}
-    >
-      <span className="list-group-item-label">{name}</span>
+    <li className={className}>
+      <span
+        className="list-group-item-label"
+        onClick={onToggleRise}
+      >
+        {name}
+      </span>
       <input
         type="text"
         className="list-groups-item-input"
@@ -40,9 +47,13 @@ const EmployeesListItem = ({ name, salary, onDelete, increase }) => {
         <button
           type="button"
           className="btn-cookie btn-sm"
-          onClick={() => addSetPrize()}
+          onClick={onToggleIncrease}
+          name="button1"
         >
-          <i className="fas fa-cookie"></i>
+          <i
+            className="fas fa-cookie"
+            name="button1"
+          ></i>
         </button>
         <button
           type="button"
