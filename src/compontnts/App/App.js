@@ -7,46 +7,49 @@ import EmployeesAddForm from "../Employees-add-form/Employees-add-form";
 import { useState } from "react";
 
 function App() {
-  const [deleted, setDeleted] = useState(50);
+  const [deleted, setDeleted] = useState({
+    data: [
+      {
+        name: "John C.",
+        salary: 500,
+        increase: true,
+        id: 1,
+      },
+      {
+        name: "Alex M.",
+        salary: 800,
+        increase: false,
+        id: 2,
+      },
+      {
+        name: "Carl W.",
+        salary: 1100,
+        increase: false,
+        id: 3,
+      },
+      {
+        name: "Sara I.",
+        salary: 600,
+        increase: false,
+        id: 4,
+      },
+      {
+        name: "West F.",
+        salary: 5000,
+        increase: false,
+        id: 5,
+      },
+    ],
+  });
+
+  console.log(deleted);
 
   function addSetDeleted(id) {
-    setDeleted(id);
-    const index = data.findIndex((elem) => elem.id === deleted);
-    console.log(id);
+    deleted.data.findIndex((elem) => elem.id === id);
+    let data = [];
+    deleted.data.map((item) => data.push(item));
+    setDeleted({ data: data.filter((item) => item.id !== id) });
   }
-
-  const data = [
-    {
-      name: "John C.",
-      salary: 500,
-      increase: true,
-      id: 1,
-    },
-    {
-      name: "Alex M.",
-      salary: 800,
-      increase: false,
-      id: 2,
-    },
-    {
-      name: "Carl W.",
-      salary: 1100,
-      increase: false,
-      id: 3,
-    },
-    {
-      name: "Sara I.",
-      salary: 600,
-      increase: false,
-      id: 4,
-    },
-    {
-      name: "West F.",
-      salary: 5000,
-      increase: false,
-      id: 5,
-    },
-  ];
 
   return (
     <div className="App">
@@ -56,7 +59,7 @@ function App() {
         <AppFilter />
       </div>
       <EmployeesList
-        data={data}
+        data={deleted}
         onDelete={addSetDeleted}
       />
       <EmployeesAddForm />

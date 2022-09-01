@@ -4,7 +4,7 @@ import "./Employees-list.css";
 const EmployeesList = ({ data, onDelete }) => {
   return (
     <ul className="app-list list-group">
-      {data.map((item) => {
+      {data.data.map((item) => {
         const { id, ...itemProps } = item;
         return (
           <EmployeesListItem
