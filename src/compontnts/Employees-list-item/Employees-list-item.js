@@ -6,35 +6,23 @@ const EmployeesListItem = ({
   onDelete,
   increase,
   rise,
-  onToggleIncrease,
-  onToggleRise,
+  onToggleProps,
 }) => {
   let className = "list-group-item d-flex justife-content-between";
 
-  // function addSetPrize() {
-  //   if (prize) {
-  //     className = "list-group-item d-flex justife-content-between";
-  //     setPrize(false);
-  //     setIncreases(false);
-  //   } else {
-  //     className += " like increase";
-  //     setPrize(true);
-  //     setIncreases(true);
-  //   }
-  // }
-
   if (increase) {
-    className += " like";
+    className += " like increase";
   }
 
   if (rise) {
-    className += " increase";
+    className += " increase like";
   }
   return (
     <li className={className}>
       <span
         className="list-group-item-label"
-        onClick={onToggleRise}
+        onClick={onToggleProps}
+        data-toggle="rise"
       >
         {name}
       </span>
@@ -47,8 +35,8 @@ const EmployeesListItem = ({
         <button
           type="button"
           className="btn-cookie btn-sm"
-          onClick={onToggleIncrease}
-          name="button1"
+          onClick={onToggleProps}
+          data-toggle="increase"
         >
           <i
             className="fas fa-cookie"

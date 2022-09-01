@@ -12,7 +12,7 @@ function App() {
       {
         name: "John C.",
         salary: 500,
-        increase: true,
+        increase: false,
         rise: false,
         id: idEmployees(),
       },
@@ -20,7 +20,7 @@ function App() {
         name: "Alex M.",
         salary: 800,
         increase: false,
-        rise: true,
+        rise: false,
         id: idEmployees(),
       },
       {
@@ -71,46 +71,46 @@ function App() {
     employees.data.map((item) => data.push(item));
     data.push(employeesData);
     console.log(data);
-    setEmployees({ data: data });
+    if ((name, salary !== undefined && salary !== "")) {
+      setEmployees({ data: data });
+      console.log(salary);
+    }
   }
 
-  function onToggleIncrease(id) {
+  function onToggleProps(id, props) {
     let data = [];
 
     employees.data.map((item) => data.push(item));
 
     let index = data.findIndex((elem) => elem.id === id);
 
-    let old = data[index].increase;
+    let old = data[index][props];
 
     if (old === true) {
-      data[index].increase = false;
+      data[index][props] = false;
     } else {
-      data[index].increase = true;
+      data[index][props] = true;
     }
+
     setEmployees({ data: data });
   }
 
-  function onToggleRise(id) {
-    let data = [];
-
-    employees.data.map((item) => data.push(item));
-
-    let index = data.findIndex((elem) => elem.id === id);
-
-    let old = data[index].rise;
-
-    if (old === true) {
-      data[index].rise = false;
+  let employeesPrize = [0];
+  let employeesValue = employees.data.length;
+  employees.data.map((item) => {
+    if (item.rise || item.increase === true) {
+      return employeesPrize++;
     } else {
-      data[index].rise = true;
+      return employeesPrize;
     }
-    setEmployees({ data: data });
-  }
+  });
 
   return (
     <div className="App">
-      <AppInfo />
+      <AppInfo
+        employeesPrize={employeesPrize}
+        employeesValue={employeesValue}
+      />
       <div className="search-panel">
         <SearchPanel />
         <AppFilter />
@@ -118,8 +118,7 @@ function App() {
       <EmployeesList
         data={employees}
         onDelete={removeSetEmployees}
-        onToggleIncrease={onToggleIncrease}
-        onToggleRise={onToggleRise}
+        onToggleIncrease={onToggleProps}
       />
       <EmployeesAddForm onAddEmployees={addSetEmployees} />
     </div>
