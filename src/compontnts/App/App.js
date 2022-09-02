@@ -13,14 +13,14 @@ function App() {
         name: "John C.",
         salary: 500,
         increase: false,
-        rise: false,
+        rise: true,
         id: idEmployees(),
       },
       {
         name: "Alex M.",
         salary: 800,
         increase: false,
-        rise: false,
+        rise: true,
         id: idEmployees(),
       },
       {
@@ -45,6 +45,8 @@ function App() {
         id: idEmployees(),
       },
     ],
+    tern: "",
+    filter: "all",
   });
 
   function idEmployees() {
@@ -58,7 +60,7 @@ function App() {
   }
 
   function addSetEmployees({ name, salary }) {
-    let data = [];
+    let data = { ...employees };
 
     let employeesData = {
       name: name,
@@ -68,31 +70,28 @@ function App() {
       id: idEmployees(),
     };
 
-    employees.data.map((item) => data.push(item));
-    data.push(employeesData);
-    console.log(data);
+    data.data.push(employeesData);
     if ((name, salary !== undefined && salary !== "")) {
-      setEmployees({ data: data });
-      console.log(salary);
+      setEmployees({ ...data });
     }
   }
 
   function onToggleProps(id, props) {
-    let data = [];
+    let data = { ...employees };
 
-    employees.data.map((item) => data.push(item));
+    let index = data.data.findIndex((elem) => elem.id === id);
 
-    let index = data.findIndex((elem) => elem.id === id);
-
-    let old = data[index][props];
+    let old = data.data[index][props];
 
     if (old === true) {
-      data[index][props] = false;
+      data.data[index].increase = false;
+      data.data[index].rise = false;
     } else {
-      data[index][props] = true;
+      data.data[index].increase = true;
+      data.data[index].rise = true;
     }
 
-    setEmployees({ data: data });
+    setEmployees({ ...data });
   }
 
   let employeesPrize = [0];
@@ -105,6 +104,42 @@ function App() {
     }
   });
 
+  const { data, tern, filter } = employees;
+  const vesibleData = filterPost(searchEmp(data, tern), filter);
+
+  function searchEmp(items, tern) {
+    if (tern.length === 0) {
+      return items;
+    }
+    return items.filter((item) => {
+      return item.name.indexOf(tern) > -1;
+    });
+  }
+
+  function onUpdateSearch(ternt) {
+    let data = { ...employees };
+    data.tern = ternt;
+    setEmployees(data);
+  }
+
+  function filterPost(items, filter) {
+    switch (filter) {
+      case "rise":
+        return items.filter((item) => item.rise);
+
+      case "moreThen1000":
+        return items.filter((item) => item.salary > 1000);
+      default:
+        return items;
+    }
+  }
+
+  function onFilterSelect(filter) {
+    let data = { ...employees };
+    data.filter = filter;
+    setEmployees(data);
+  }
+
   return (
     <div className="App">
       <AppInfo
@@ -112,11 +147,14 @@ function App() {
         employeesValue={employeesValue}
       />
       <div className="search-panel">
-        <SearchPanel />
-        <AppFilter />
+        <SearchPanel onUpdateSearch={onUpdateSearch} />
+        <AppFilter
+          filter={filter}
+          onFilterSelect={onFilterSelect}
+        />
       </div>
       <EmployeesList
-        data={employees}
+        data={vesibleData}
         onDelete={removeSetEmployees}
         onToggleIncrease={onToggleProps}
       />
