@@ -6,7 +6,6 @@ const EmployeesAddForm = ({ onAddEmployees }) => {
   const [salary, setSalary] = useState("");
 
   function addSet(e, props) {
-    console.log(e);
     props(e);
   }
 
