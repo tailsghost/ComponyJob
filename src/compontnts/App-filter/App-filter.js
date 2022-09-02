@@ -21,7 +21,7 @@ const AppFilter = ({ filter, onFilterSelect }) => {
     const clazz = active ? "btn-light" : "btn-outline-light";
     return (
       <button
-        className={`btn ${clazz}`}
+        className={`btn button-from ${clazz}`}
         type="button"
         key={name}
         onClick={() => onFilterSelect(name)}

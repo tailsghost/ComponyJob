@@ -15,14 +15,14 @@ const EmployeesAddForm = ({ onAddEmployees }) => {
       <form className="add-form d-flex">
         <input
           type="text"
-          className="form-control new-post-label"
+          className="form-control new-post-label form-wrap"
           placeholder="Как его зовут?"
           onChange={(e) => addSet(e.target.value, setName)}
           value={name}
         />
         <input
           type="number"
-          className="form-control new-post-label"
+          className="form-control new-post-label form-wrap"
           placeholder="З/П в $?"
           onChange={(e) => addSet(e.target.value, setSalary)}
           value={salary}
@@ -30,7 +30,7 @@ const EmployeesAddForm = ({ onAddEmployees }) => {
 
         <button
           type="sumbit"
-          className="btn btn-outline-light"
+          className="btn btn-outline-light btn--wrap"
           onClick={(e) => {
             e.preventDefault();
             onAddEmployees({ name, salary });

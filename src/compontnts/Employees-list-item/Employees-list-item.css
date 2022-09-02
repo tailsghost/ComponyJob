@@ -50,6 +50,10 @@
   opacity: 0;
 }
 
+.flex-start {
+  display: flex;
+}
+
 .list-group-item.like .fa-star {
   opacity: 1;
   transform: translateX(0px);
@@ -62,4 +66,49 @@
 
 .list-group-item.increase .btn-star {
   color: #aeaeae;
+}
+
+@media (max-width: 500px) {
+  .list-group-item span {
+    min-width: 130px;
+  }
+  .list-group-item input {
+    max-width: 120px;
+  }
+  .add-form input {
+    margin-top: 15px;
+  }
+  .btn-outline-light {
+    position: relative;
+    left: 50%;
+    top: 15px;
+    transform: translate(-50%, 0);
+  }
+  .button-from {
+    position: relative;
+    left: 0;
+    transform: none;
+    max-width: 120px;
+  }
+  .app-add-form > h3 {
+    max-width: 350px;
+  }
+  .form-wrap {
+    max-width: 135px;
+    position: relative;
+    left: 0;
+  }
+  .add-form {
+    position: relative;
+    left: -15px;
+    max-width: 60px;
+  }
+  .add-form input {
+    margin-right: 5px;
+  }
+  .btn--wrap {
+    position: relative;
+    top: 5px;
+    left: 50px;
+  }
 }

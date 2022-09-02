@@ -54,9 +54,15 @@ function App() {
   }
 
   function removeSetEmployees(id) {
-    let data = [];
-    employees.data.map((item) => data.push(item));
-    setEmployees({ data: data.filter((item) => item.id !== id) });
+    let data = { ...employees };
+    let date = [
+      {
+        data: data.data.filter((item) => item.id !== id),
+        tern: tern,
+        filter: filter,
+      },
+    ];
+    setEmployees(...date);
   }
 
   function addSetEmployees({ name, salary }) {
@@ -108,6 +114,7 @@ function App() {
   const vesibleData = filterPost(searchEmp(data, tern), filter);
 
   function searchEmp(items, tern) {
+    console.log(tern);
     if (tern.length === 0) {
       return items;
     }

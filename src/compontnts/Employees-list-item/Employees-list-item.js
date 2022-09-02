@@ -8,7 +8,7 @@ const EmployeesListItem = ({
   rise,
   onToggleProps,
 }) => {
-  let className = "list-group-item d-flex justife-content-between";
+  let className = "list-group-item justife-content-between flex-start";
 
   if (increase) {
     className += " like increase";
