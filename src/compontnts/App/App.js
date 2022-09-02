@@ -114,7 +114,10 @@ function App() {
   const vesibleData = filterPost(searchEmp(data, tern), filter);
 
   function searchEmp(items, tern) {
+<<<<<<< HEAD
     console.log(tern);
+=======
+>>>>>>> main
     if (tern.length === 0) {
       return items;
     }
